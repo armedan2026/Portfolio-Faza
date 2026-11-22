@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Data Science | Faza Fahimatul Ilmiyah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .chart-tooltip {
+            position: absolute;
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Tooltip untuk Grafik D3 -->
+    <div id="tooltip" class="chart-tooltip"></div>
+
+    <!-- Navigasi -->
+    <nav class="sticky top-0 z-40 glass-card border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">F</div>
+                    <span class="font-bold text-slate-800 tracking-tight">Faza.Data</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#tentang" class="hover:text-indigo-600 transition">Tentang</a>
+                    <a href="#proyek-1" class="hover:text-indigo-600 transition">Studi Kasus 1: Data Wrangling</a>
+                    <a href="#proyek-2" class="hover:text-indigo-600 transition">Studi Kasus 2: HPDS & k-NN</a>
+                    <a href="#keahlian" class="hover:text-indigo-600 transition">Keahlian</a>
+                </div>
+                <a href="#kontak" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition shadow-sm">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="tentang" class="relative overflow-hidden bg-white border-b border-slate-200 pt-16 pb-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold mb-6 border border-indigo-100">
+                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                    Portofolio Komputasi Statistika & Data Science
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                    Halo, saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Faza Fahimatul Ilmiyah</span>
+                </h1>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    Mengubah data mentah yang kompleks menjadi wawasan strategis dan membangun algoritma komputasi berperforma tinggi. Berikut adalah ringkasan proyek analisis data dan komputasi paralel yang telah saya kembangkan.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#proyek-1" class="px-6 py-3 rounded-xl bg-slate-900 text-white font-medium hover:bg-slate-800 transition shadow-md">
+                        Eksplorasi Proyek
+                    </a>
+                    <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-100 text-slate-700 text-sm font-medium">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Python • Pandas • SciPy • Parallel Computing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- PROYEK 1: DATA WRANGLING -->
+        <section id="proyek-1" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-indigo-600 font-semibold text-sm tracking-wider uppercase">Studi Kasus 01 • Exploratory Data Analysis</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-1">Analisis Evaluasi Performa Akademik (Data Wrangling)</h2>
+                </div>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs font-medium">
+                    Proyek Individu • Data Wrangling & EDA
+                </span>
+            </div>
+
+            <!-- Ringkasan & Metodologi -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="lg:col-span-2 glass-card rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Ringkasan Proyek</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Proyek ini berfokus pada penggabungan (<em>merging</em>), pembersihan, dan agregasi 7 tabel relasional akademik (<code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">mahasiswa</code>, <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">dosen</code>, <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">nilai</code>, <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">mata_kuliah</code>, dll.) untuk mengungkap pola tersembunyi di balik pemberian nilai dan pencapaian akademik mahasiswa.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-100">
+                        <div>
+                            <div class="text-2xl font-extrabold text-indigo-600">7</div>
+                            <div class="text-xs text-slate-500 font-medium">Dataset Relasional</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-indigo-600">85.75</div>
+                            <div class="text-xs text-slate-500 font-medium">Rata-rata Nilai Tertinggi</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-indigo-600">+19.1</div>
+                            <div class="text-xs text-slate-500 font-medium">Selisih Nilai Dosen S3 vs S2</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-indigo-600">SMK</div>
+                            <div class="text-xs text-slate-500 font-medium">Latar Belakang Unggul (82.8)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insights Card -->
+                <div class="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-6 sm:p-8 text-white shadow-md flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Temuan Utama (Key Insights)
+                        </h3>
+                        <ul class="space-y-3 text-sm text-indigo-100">
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-white">•</span>
+                                <span><strong>Kualifikasi Dosen:</strong> Dosen bergelar S3 memberikan rata-rata nilai lebih tinggi (83.27) dengan variansi lebih stabil (SD 12.07) dibanding S2 (64.17).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-white">•</span>
+                                <span><strong>Latar Belakang Mahasiswa:</strong> Lulusan SMK meraih rata-rata tertinggi (82.82) dan paling konsisten (SD 11.77) dibanding MA dan SMU.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-bold text-white">•</span>
+                                <span><strong>Kapasitas Kelas:</strong> Jumlah mahasiswa dalam kelas tidak memengaruhi rata-rata nilai secara langsung.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Chart Container untuk Proyek 1 -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h4 class="text-base font-bold text-slate-800">Eksplorasi Visual Hasil Analisis</h4>
+                        <p class="text-xs text-slate-500">Pilih dimensi analisis untuk melihat perbandingan rata-rata nilai & standar deviasi</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="wrangling-filters">
+                        <button onclick="updateWranglingChart('dosen')" class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition">Per Dosen</button>
+                        <button onclick="updateWranglingChart('sekolah')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Asal Sekolah</button>
+                        <button onclick="updateWranglingChart('pendidikan')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Pendidikan Dosen</button>
+                        <button onclick="updateWranglingChart('matkul')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Per Mata Kuliah</button>
+                    </div>
+                </div>
+                <div id="chart-wrangling" class="w-full h-72"></div>
+                <p id="chart-wrangling-desc" class="mt-4 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                    <strong>Interpretasi:</strong> Andri Basuki memberikan rata-rata nilai tertinggi (85.75) dengan sebaran data paling sempit (SD: 7.74), menunjukkan konsistensi penilaian yang tinggi dibandingkan Annisa Fitria (Mean: 60.09, SD: 16.22).
+                </p>
+            </div>
+        </section>
+
+        <!-- PROYEK 2: METRICS & HPDS -->
+        <section id="proyek-2" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-cyan-600 font-semibold text-sm tracking-wider uppercase">Studi Kasus 02 • Machine Learning & High-Performance Computing</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-1">Optimasi Algoritma k-NN & Evaluasi Metrik Jarak</h2>
+                </div>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg bg-cyan-50 text-cyan-700 border border-cyan-100 text-xs font-medium">
+                    Proyek Individu • Komputasi Statistika
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Penjelasan Teknis -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-3">Tantangan & Solusi Komputasi</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Algoritma <em>k-Nearest Neighbors</em> (k-NN) secara alami memiliki kompleksitas komputasi tinggi saat menghitung jarak antar titik secara serial pada validasi silang (<em>10-fold Cross Validation</em>).
+                        </p>
+                        <div class="space-y-4 mt-6">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                                <h4 class="text-sm font-bold text-slate-800 mb-1">1. Evaluasi Multi-Metrik Jarak</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Membandingkan performa klasifikasi (k=5) pada dataset 2D (250 train, 250 test) menggunakan empat metrik jarak: <strong>Euclidean</strong> (L2), <strong>Manhattan</strong> (L1/Grid), <strong>Chebyshev</strong> (L∞), dan <strong>Canberra</strong>.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                                <h4 class="text-sm font-bold text-slate-800 mb-1">2. Akselerasi Pemrograman Paralel (HPDS)</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Mengubah eksekusi <em>looping</em> serial yang lambat menjadi pemrosesan paralel (<em>Multithreading / Multiprocessing</em>) untuk memangkas waktu eksekusi 10-fold CV secara drastis tanpa mengorbankan akurasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Dataset: 250 Sampel Latih, 250 Uji</span>
+                        <span>Parameter: k = 5, 10-Fold CV</span>
+                    </div>
+                </div>
+
+                <!-- Simulasi Perbandingan Jarak Interaktif -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">Visualisasi Metrik Jarak</h3>
+                            <p class="text-xs text-slate-500">Klik metrik di bawah untuk melihat cara kerja perhitungan jarak</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+                        <button onclick="selectMetric('euclidean')" class="metric-btn active py-2 px-3 rounded-xl text-xs font-semibold bg-cyan-600 text-white transition">Euclidean</button>
+                        <button onclick="selectMetric('manhattan')" class="metric-btn py-2 px-3 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Manhattan</button>
+                        <button onclick="selectMetric('chebyshev')" class="metric-btn py-2 px-3 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Chebyshev</button>
+                        <button onclick="selectMetric('canberra')" class="metric-btn py-2 px-3 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Canberra</button>
+                    </div>
+
+                    <!-- Canvas SVG untuk ilustrasi jarak -->
+                    <div class="bg-slate-900 rounded-xl p-4 text-white">
+                        <div class="flex justify-between items-center mb-2">
+                            <span id="metric-title" class="text-sm font-bold text-cyan-400">Euclidean Distance (L2 Norm)</span>
+                            <span id="metric-formula" class="text-xs font-mono bg-slate-800 px-2 py-1 rounded text-slate-300">√((x₂-x₁)² + (y₂-y₁)²)</span>
+                        </div>
+                        <div id="metric-canvas" class="w-full h-44 flex items-center justify-center"></div>
+                        <p id="metric-desc" class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            Mengukur jarak garis lurus terpendek antara dua titik dalam ruang Euclidean. Sangat efektif untuk fitur kontinu dengan skala yang seragam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEAHLIAN / TECH STACK -->
+        <section id="keahlian" class="scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Keahlian & Teknologi</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="text-indigo-600 font-bold text-sm mb-1">Data Manipulation</div>
+                    <p class="text-xs text-slate-500">Pandas, NumPy, Data Cleaning, Relational Merging, GroupBy Aggregation</p>
+                </div>
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="text-cyan-600 font-bold text-sm mb-1">Machine Learning</div>
+                    <p class="text-xs text-slate-500">Scikit-Learn, k-NN, Cross-Validation, Distance Metrics (SciPy)</p>
+                </div>
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="text-emerald-600 font-bold text-sm mb-1">High-Performance DS</div>
+                    <p class="text-xs text-slate-500">Parallel Programming, Multithreading, Code Optimization & Benchmarking</p>
+                </div>
+                <div class="glass-card p-5 rounded-2xl">
+                    <div class="text-amber-600 font-bold text-sm mb-1">Data Visualization</div>
+                    <p class="text-xs text-slate-500">Matplotlib, Seaborn, Statistical Storytelling & Interpretation</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="text-white font-bold text-lg">Faza Fahimatul Ilmiyah</span>
+                <p class="text-xs mt-1">Portofolio Proyek Komputasi Statistika & Data Science</p>
+            </div>
+            <div class="flex gap-4 text-sm">
+                <a href="https://github.com/fazafi" target="_blank" class="text-slate-300 hover:text-white transition">GitHub (@fazafi)</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data aktual dari hasil eksekusi notebook
+        const wranglingData = {
+            dosen: {
+                desc: "<strong>Interpretasi:</strong> Andri Basuki memberikan rata-rata nilai tertinggi (85.75) dengan sebaran data paling sempit (SD: 7.74), menunjukkan konsistensi penilaian yang tinggi dibandingkan Annisa Fitria (Mean: 60.09, SD: 16.22).",
+                items: [
+                    { label: "Andri Basuki", mean: 85.75, std: 7.74 },
+                    { label: "Zulfikar", mean: 80.43, std: 15.88 },
+                    { label: "Yudi", mean: 70.57, std: 13.01 },
+                    { label: "Annisa Fitria", mean: 60.09, std: 16.22 }
+                ]
+            },
+            sekolah: {
+                desc: "<strong>Interpretasi:</strong> Mahasiswa lulusan SMK mencatat performa akademik tertinggi (82.82) dengan standar deviasi terkecil (11.77). Lulusan MA memiliki variasi nilai paling lebar (SD: 21.11).",
+                items: [
+                    { label: "SMK", mean: 82.82, std: 11.77 },
+                    { label: "MA (Madrasah)", mean: 70.78, std: 21.11 },
+                    { label: "SMU", mean: 65.85, std: 14.20 }
+                ]
+            },
+            pendidikan: {
+                desc: "<strong>Interpretasi:</strong> Terdapat perbedaan signifikan berdasarkan jenjang pendidikan dosen. Dosen S3 memberikan rata-rata nilai 83.27, jauh lebih tinggi dibanding dosen S2 sebesar 64.17.",
+                items: [
+                    { label: "Dosen S3", mean: 83.27, std: 12.07 },
+                    { label: "Dosen S2", mean: 64.17, std: 15.56 }
+                ]
+            },
+            matkul: {
+                desc: "<strong>Interpretasi:</strong> Kelas KAL01 memiliki populasi terbanyak (15 mahasiswa) dengan rata-rata 78.67, membuktikan bahwa kepadatan kelas tidak menurunkan performa nilai dibanding kelas kecil seperti KAL02 (4 mahasiswa).",
+                items: [
+                    { label: "CS01 (7 Mhs)", mean: 80.43, std: 15.88 },
+                    { label: "KAL01 (15 Mhs)", mean: 78.67, std: 12.80 },
+                    { label: "KAL02 (4 Mhs)", mean: 63.50, std: 8.10 },
+                    { label: "STA02 (7 Mhs)", mean: 58.14, std: 19.84 }
+                ]
+            }
+        };
+
+        function updateWranglingChart(category) {
+            // Update state tombol
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-indigo-600', 'text-white');
+
+            const dataset = wranglingData[category];
+            document.getElementById('chart-wrangling-desc').innerHTML = dataset.desc;
+
+            const container = document.getElementById('chart-wrangling');
+            container.innerHTML = '';
+
+            const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = container.clientHeight - margin.top - margin.bottom;
+
+            const svg = d3.select("#chart-wrangling")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleBand()
+                .range([0, width])
+                .domain(dataset.items.map(d => d.label))
+                .padding(0.35);
+
+            const y = d3.scaleLinear()
+                .domain([0, 100])
+                .range([height, 0]);
+
+            // Grid lines
+            svg.append("g")
+                .attr("class", "grid")
+                .call(d3.axisLeft(y).tickSize(-width).tickFormat(""))
+                .style("stroke-dasharray", ("3,3"))
+                .style("stroke-opacity", 0.1);
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x))
+                .selectAll("text")
+                .style("font-size", "12px")
+                .style("font-weight", "600")
+                .style("color", "#475569");
+
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(5))
+                .style("color", "#64748b");
+
+            const tooltip = d3.select("#tooltip");
+
+            // Bars (Mean)
+            svg.selectAll(".bar")
+                .data(dataset.items)
+                .enter()
+                .append("rect")
+                .attr("x", d => x(d.label))
+                .attr("width", x.bandwidth())
+                .attr("y", height)
+                .attr("height", 0)
+                .attr("rx", 6)
+                .attr("fill", "#4f46e5")
+                .on("mouseover", function(event, d) {
+                    d3.select(this).attr("fill", "#4338ca");
+                    tooltip.style("opacity", 1)
+                        .html(`<strong>${d.label}</strong><br/>Mean Nilai: ${d.mean.toFixed(2)}<br/>Std Deviasi: ±${d.std.toFixed(2)}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", function() {
+                    d3.select(this).attr("fill", "#4f46e5");
+                    tooltip.style("opacity", 0);
+                })
+                .transition()
+                .duration(600)
+                .attr("y", d => y(d.mean))
+                .attr("height", d => height - y(d.mean));
+
+            // Error bars (Std Dev)
+            svg.selectAll(".error-line")
+                .data(dataset.items)
+                .enter()
+                .append("line")
+                .attr("x1", d => x(d.label) + x.bandwidth() / 2)
+                .attr("x2", d => x(d.label) + x.bandwidth() / 2)
+                .attr("y1", d => y(Math.min(100, d.mean + d.std)))
+                .attr("y2", d => y(Math.max(0, d.mean - d.std)))
+                .attr("stroke", "#06b6d4")
+                .attr("stroke-width", 2.5);
+
+            // Titik Mean di tengah error bar
+            svg.selectAll(".mean-dot")
+                .data(dataset.items)
+                .enter()
+                .append("circle")
+                .attr("cx", d => x(d.label) + x.bandwidth() / 2)
+                .attr("cy", d => y(d.mean))
+                .attr("r", 4)
+                .attr("fill", "#ffffff")
+                .attr("stroke", "#06b6d4")
+                .attr("stroke-width", 2);
+        }
+
+        // Visualisasi Metrik Jarak (Proyek 2)
+        const metricInfo = {
+            euclidean: {
+                title: "Euclidean Distance (L2 Norm)",
+                formula: "√((x₂-x₁)² + (y₂-y₁)²)",
+                desc: "Mengukur jarak garis lurus terpendek antara dua titik dalam ruang Euclidean. Sangat efektif untuk fitur kontinu dengan skala yang seragam.",
+                path: "M 50 130 L 230 40"
+            },
+            manhattan: {
+                title: "Manhattan Distance (L1 / City Block)",
+                formula: "|x₂-x₁| + |y₂-y₁|",
+                desc: "Menghitung jarak berdasarkan jalur grid vertikal dan horizontal (seperti blok kota). Lebih tahan terhadap outlier dibanding Euclidean.",
+                path: "M 50 130 L 230 130 L 230 40"
+            },
+            chebyshev: {
+                title: "Chebyshev Distance (L∞ Norm)",
+                formula: "max(|x₂-x₁|, |y₂-y₁|)",
+                desc: "Mengambil selisih maksimum di sepanjang satu dimensi koordinat saja (seperti gerakan raja pada papan catur).",
+                path: "M 50 130 L 230 130"
+            },
+            canberra: {
+                title: "Canberra Distance (Weighted L1)",
+                formula: "∑ |xᵢ-yᵢ| / (|xᵢ|+|yᵢ|)",
+                desc: "Versi terbobot dari jarak Manhattan yang sangat sensitif terhadap perubahan kecil pada nilai yang mendekati titik nol (origin).",
+                path: "M 50 130 Q 140 130 230 40"
+            }
+        };
+
+        function selectMetric(type) {
+            document.querySelectorAll('.metric-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-cyan-600', 'text-white');
+
+            const info = metricInfo[type];
+            document.getElementById('metric-title').innerText = info.title;
+            document.getElementById('metric-formula').innerText = info.formula;
+            document.getElementById('metric-desc').innerText = info.desc;
+
+            renderMetricSVG(info.path);
+        }
+
+        function renderMetricSVG(pathData) {
+            const canvas = document.getElementById('metric-canvas');
+            canvas.innerHTML = `
+                <svg viewBox="0 0 280 170" class="w-full h-full max-w-xs">
+                    <!-- Grid background -->
+                    <defs>
+                        <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#334155" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="280" height="170" fill="url(#grid)" rx="8" />
+                    
+                    <!-- Garis Jarak -->
+                    <path d="${pathData}" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    
+                    <!-- Titik A -->
+                    <circle cx="50" cy="130" r="6" fill="#818cf8" stroke="#fff" stroke-width="2"/>
+                    <text x="35" y="152" fill="#cbd5e1" font-size="11" font-weight="bold">Titik A (x₁,y₁)</text>
+                    
+                    <!-- Titik B -->
+                    <circle cx="230" cy="40" r="6" fill="#f472b6" stroke="#fff" stroke-width="2"/>
+                    <text x="195" y="25" fill="#cbd5e1" font-size="11" font-weight="bold">Titik B (x₂,y₂)</text>
+                </svg>
+            `;
+        }
+
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            // Trigger grafik awal tanpa event click
+            const container = document.getElementById('chart-wrangling');
+            const dataset = wranglingData['dosen'];
+            const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = container.clientHeight - margin.top - margin.bottom;
+
+            const svg = d3.select("#chart-wrangling")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleBand().range([0, width]).domain(dataset.items.map(d => d.label)).padding(0.35);
+            const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+
+            svg.append("g").call(d3.axisLeft(y).tickSize(-width).tickFormat("")).style("stroke-dasharray", ("3,3")).style("stroke-opacity", 0.1);
+            svg.append("g").attr("transform", `translate(0,${height})`).call(d3.axisBottom(x)).selectAll("text").style("font-size", "12px").style("font-weight", "600").style("color", "#475569");
+            svg.append("g").call(d3.axisLeft(y).ticks(5)).style("color", "#64748b");
+
+            const tooltip = d3.select("#tooltip");
+            svg.selectAll(".bar").data(dataset.items).enter().append("rect")
+                .attr("x", d => x(d.label)).attr("width", x.bandwidth()).attr("y", d => y(d.mean)).attr("height", d => height - y(d.mean)).attr("rx", 6).attr("fill", "#4f46e5")
+                .on("mouseover", function(event, d) {
+                    d3.select(this).attr("fill", "#4338ca");
+                    tooltip.style("opacity", 1).html(`<strong>${d.label}</strong><br/>Mean Nilai: ${d.mean.toFixed(2)}<br/>Std Deviasi: ±${d.std.toFixed(2)}`).style("left", (event.pageX + 10) + "px").style("top", (event.pageY - 28) + "px");
+                })
+                .on("mouseout", function() { d3.select(this).attr("fill", "#4f46e5"); tooltip.style("opacity", 0); });
+
+            svg.selectAll(".error-line").data(dataset.items).enter().append("line")
+                .attr("x1", d => x(d.label) + x.bandwidth() / 2).attr("x2", d => x(d.label) + x.bandwidth() / 2)
+                .attr("y1", d => y(Math.min(100, d.mean + d.std))).attr("y2", d => y(Math.max(0, d.mean - d.std)))
+                .attr("stroke", "#06b6d4").attr("stroke-width", 2.5);
+
+            svg.selectAll(".mean-dot").data(dataset.items).enter().append("circle")
+                .attr("cx", d => x(d.label) + x.bandwidth() / 2).attr("cy", d => y(d.mean)).attr("r", 4).attr("fill", "#ffffff").attr("stroke", "#06b6d4").attr("stroke-width", 2);
+
+            renderMetricSVG(metricInfo.euclidean.path);
+        });
+
+        // Responsif saat ukuran layar berubah
+        window.addEventListener('resize', () => {
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if(activeBtn) activeBtn.click();
+        });
+    </script>
+</body>
+</html>
