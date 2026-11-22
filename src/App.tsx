@@ -220,7 +220,7 @@ function Hero() {
           <motion.div className="float-card fc-top" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease, delay: 1 }}>
             <GraduationCap size={18} />
             <div>
-              <strong>B.Sc. Statistics</strong>
+              <strong>B.Stat</strong>
               <span>Universitas Indonesia</span>
             </div>
           </motion.div>
@@ -279,7 +279,7 @@ function About() {
                 <span>Focus</span>Data Analysis · Reporting · Project Coordination
               </div>
               <div>
-                <span>Education</span>B.Sc. Statistics, Universitas Indonesia
+                <span>Education</span>B.Stat, Universitas Indonesia
               </div>
             </motion.div>
           </motion.div>
